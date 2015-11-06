@@ -11,7 +11,6 @@
 >2. 如何保持一个长链接？
 
     模拟session会话。
-
 >3. handler是在什么时候触发的？有哪些类型。handler中的函数是在什么时候触发的？
 
     inboundhandler，在建立链接之后，IO读取时触发。ouboundHandler在IO往客户端写时触发。

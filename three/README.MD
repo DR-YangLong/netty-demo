@@ -21,3 +21,6 @@
 ```
 
 Encoder实质上是一个OutBoundHandler,Decoder实质上是一个InBoundHandler;
+HttpRequestDecoder========extends======HttpObjectDecoder========extends======ByteToMessageDecoder========extends======ChannelInboundHandlerAdapter
+ByteToMessageDecoder.channelRead()====>ByteToMessageDecoder.callDecode()循环读取ByteBuf===>HttpObjectDecoder.decode()对请求进行解码，将请求头和请求内容分开放入list out中===>
+ByteToMessageDecoder.channelRead()中循环调用ctx.fireChannelRead(out.get(i))，多次调用HttpServerInBoundHandler;

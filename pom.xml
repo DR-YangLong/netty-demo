@@ -10,6 +10,7 @@
         <module>two</module>
         <module>three</module>
         <module>common</module>
+        <module>four</module>
     </modules>
     <packaging>pom</packaging>
 

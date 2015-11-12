@@ -11,6 +11,7 @@
         <module>three</module>
         <module>common</module>
         <module>four</module>
+        <module>five</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -64,6 +65,11 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <!--log end-->
+            <dependency>
+                <groupId>com.esotericsoftware.kryo</groupId>
+                <artifactId>kryo</artifactId>
+                <version>2.24.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

@@ -1,0 +1,3 @@
+## 使用自定义的解码器
+通过4知道其实解码编码器都是HandlerAdapter的子类，普通的handler也可以进行解码和编码操作
+此例，继承ByteToMessageDecoder和MessageToByteEncoder，对传输的byte数组进行到Object的解码以及从Object到byte数组的编码

@@ -1,10 +1,9 @@
-package netty.demo.five.client;
+package netty.demo.six.client;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import netty.demo.common.ByteBufToBytes;
-import netty.demo.five.coder.Person;
+import netty.demo.six.coder.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

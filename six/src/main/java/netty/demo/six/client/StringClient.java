@@ -1,21 +1,21 @@
-package netty.demo.five.client;
+package netty.demo.six.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import netty.demo.five.coder.ObjectEncoder;
+import netty.demo.six.coder.ObjectEncoder;
+import netty.demo.six.coder.StringEncoder;
 
 /**
- * package: netty.demo.three.client <br/>
+ * package: netty.demo.six.client <br/>
  * blog:<a href="http://dr-yanglong.github.io/">dr-yanglong.github.io</a><br/>
- * <p>
- * functional describe:
+ * functional describe:字符串协议客户端
  *
  * @author DR.YangLong [410357434@163.com]
- * @version 1.0    2015/11/6
+ * @version 1.0    2015/11/13
  */
-public class HttpClient {
+public class StringClient {
     //客户端实现
     public void start(String host, int port) throws Exception {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -29,25 +29,12 @@ public class HttpClient {
                 protected void initChannel(Channel channel) throws Exception {
                     //注册handler
                     //客户端发送编码
-                    channel.pipeline().addLast(new ObjectEncoder());
+                    channel.pipeline().addLast(new StringEncoder());
                     //业务处理
                     channel.pipeline().addLast(new HttpClientInBoundHandler());
                 }
             });
-            ChannelFuture future = bootstrap.connect(host, port).sync();
-            /*URI uri=new URI("http://"+host+":"+port);
-            String msg="Hello HttpServer!";
-            DefaultFullHttpRequest request=new DefaultFullHttpRequest(HttpVersion.HTTP_1_1,HttpMethod.POST,uri.toASCIIString(), Unpooled.wrappedBuffer(msg.getBytes()));
-            //设置请求头
-            request.headers().set(HttpHeaders.Names.HOST, host);
-            request.headers().set(HttpHeaders.Names.CONNECTION, HttpHeaders.Values.KEEP_ALIVE);
-            request.headers().set(HttpHeaders.Names.CONTENT_LENGTH, request.content().readableBytes());
-            request.headers().set("messageType", "normal");
-            request.headers().set("businessType", "testServerState");
-            //发起请求
-            future.channel().write(request);
-            future.channel().flush();*/
-            future.channel().closeFuture().sync();
+            ChannelFuture future = bootstrap.connect(host, port).sync();future.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
         }
@@ -55,7 +42,7 @@ public class HttpClient {
 
     //启动客户端
     public static void main(String[] args) throws Exception {
-        HttpClient client = new HttpClient();
+        StringClient client = new StringClient();
         client.start("127.0.0.1", 8000);
     }
 }

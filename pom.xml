@@ -12,6 +12,7 @@
         <module>common</module>
         <module>four</module>
         <module>five</module>
+        <module>six</module>
     </modules>
     <packaging>pom</packaging>
 

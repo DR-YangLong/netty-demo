@@ -1,10 +1,10 @@
-package netty.demo.five.client;
+package netty.demo.six.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import netty.demo.five.coder.ObjectEncoder;
+import netty.demo.six.coder.ObjectEncoder;
 
 /**
  * package: netty.demo.three.client <br/>

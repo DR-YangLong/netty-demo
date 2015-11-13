@@ -41,7 +41,6 @@ public class BusinessBoundHandler extends ChannelInboundHandlerAdapter {
         ctx.write(send);
         ctx.flush();
         logger.debug("==========================出服务端BusinessBoundHandler==================================");
-        send.release();
     }
 
     @Override

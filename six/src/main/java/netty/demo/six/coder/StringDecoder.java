@@ -33,6 +33,12 @@ public class StringDecoder extends ByteToMessageDecoder{
             ByteBufToBytes reader = new ByteBufToBytes(in.readableBytes());
             String msg=new String(reader.read(in));
             logger.debug(msg);
+            //此处输出到业务处理器，将消息转变为对象，示例仅新建一个
+            Person person=new Person();
+            person.setPassword("789456");
+            person.setUserName("杨龙");
+            person.setUserId(2l);
+            out.add(person);
         }else {//不是本解码器处理的协议
             ctx.fireChannelRead(in);
         }

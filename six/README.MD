@@ -3,4 +3,18 @@
 一个典型的自定义协议格式
 > 使用协议[8字节]  协议版本[2字节] 消息长度[8字节] 消息体[{消息长度}]
 
-##
+## 关于异常
+由于多个ByteToMessageDecoder，当本例子中使用StringClient时，
+pipeline先调用ObjectDecoder，不匹配，
+接着调用StringDecoder，匹配，
+StringDecoder解码后回调了ByteToMessageDecoder的channelRead方法，
+此时将释放ByteBuf,接着调用之后所有的Handler，本例就是BusinessBoundHandler，
+执行BusinessBoundHandler，执行完后回调StringDecoder执行fireChannelRead方法后面的代码，
+接着是ObjectDecoder中fireChannelRead后的代码，此时再次回调ByteToMessageDecoder的channelRead方法中剩下部分的代码，这部分代码finally中有释放ByteBuf的代码，接着又执行一遍所有BusinessBoundHandler。
+可见根本原因是由于
+解码是由ByteToMessageDecoder的channelRead来调用执行的,
+这个方法finally中会去调用ByteBuf的release方法释放ByteBuf，
+因此当匹配了一个解码器并执行后，此解码器再次回调之前的解码器就会出现ByteBuf为空的情况。
+## 目前的解决方法
+解码器实现方式直接继承ChannelInboundHandlerAdapter进行解码。
+或者在最后的handler中捕获异常

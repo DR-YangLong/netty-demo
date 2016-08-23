@@ -13,6 +13,8 @@
         <module>four</module>
         <module>five</module>
         <module>six</module>
+        <module>line-decoder</module>
+        <module>delimiter-decoder</module>
     </modules>
     <packaging>pom</packaging>
 

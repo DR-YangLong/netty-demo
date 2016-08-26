@@ -1,0 +1,7 @@
+模拟http服务：
+request解码器：
+HttpRequestDecoder：按照http请求协议格式将请求转为request对象。
+HttpObjectAggregator：把被分割的request对象装换为一个。
+ChunkedWriteHandler：大文件流支持
+response编码器：
+HttpResponseEncoder：将netty输出的信息封装为http response对象。

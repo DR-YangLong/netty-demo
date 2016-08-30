@@ -1,0 +1,18 @@
+package proto;
+import "SubscribeReq.proto";
+import "SubscribeResp.proto";
+option java_package="netty.demo.protobuf";
+option java_outer_classname="ProtoProtocolProto";
+
+
+enum ProtocolTag{
+    Req=1;
+    Resp=2;
+}
+
+
+message ProtoProtocol{
+    required ProtocolTag type=1;
+    optional SubscribeReq subReq=2;
+    optional SubscribeResp subResp=3;
+}

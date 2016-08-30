@@ -17,6 +17,7 @@
         <module>delimiter-decoder</module>
         <module>fixedlength-decoder</module>
         <module>http-server</module>
+        <module>protobuf-serial</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -74,6 +75,11 @@
                 <groupId>com.esotericsoftware.kryo</groupId>
                 <artifactId>kryo</artifactId>
                 <version>2.24.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>3.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

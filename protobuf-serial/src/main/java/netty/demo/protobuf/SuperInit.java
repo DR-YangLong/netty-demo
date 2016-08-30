@@ -22,8 +22,9 @@ public class SuperInit extends ChannelInitializer<SocketChannel> {
         //解决半包解码
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
         //proto解码
-        pipeline.addLast(new ProtobufDecoder(SubscribeReqProto.SubscribeReq.getDefaultInstance()));
-        pipeline.addLast(new ProtobufDecoder(SubscribeRespProto.SubscribeResp.getDefaultInstance()));
+       // pipeline.addLast(new ProtobufDecoder(SubscribeReqProto.SubscribeReq.getDefaultInstance()));
+        //pipeline.addLast(new ProtobufDecoder(SubscribeRespProto.SubscribeResp.getDefaultInstance()));
+        pipeline.addLast(new ProtobufDecoder(ProtoProtocolProto.ProtoProtocol.getDefaultInstance()));
         //解决半包编码
         pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         //proto编码

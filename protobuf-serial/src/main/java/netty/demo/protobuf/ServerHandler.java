@@ -18,9 +18,16 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     //处理请求
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        SubscribeReqProto.SubscribeReq req= (SubscribeReqProto.SubscribeReq) msg;
-        logger.debug("客户端请求："+req);
-        ctx.writeAndFlush(createResp(req.getSubReqId()));
+        ProtoProtocolProto.ProtoProtocol protocol= (ProtoProtocolProto.ProtoProtocol) msg;
+        if(protocol.getType().getNumber()==1){
+            logger.debug("客户端请求："+protocol);
+            SubscribeReqProto.SubscribeReq req=protocol.getSubReq();
+            SubscribeRespProto.SubscribeResp resp=createResp(req.getSubReqId());
+            ProtoProtocolProto.ProtoProtocol.Builder response=ProtoProtocolProto.ProtoProtocol.newBuilder();
+            response.setSubResp(resp);
+            response.setType(ProtoProtocolProto.ProtocolTag.Resp);
+            ctx.writeAndFlush(response.build());
+        }
     }
 
 

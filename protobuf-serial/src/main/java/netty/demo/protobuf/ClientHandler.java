@@ -29,10 +29,13 @@ public class ClientHandler extends ChannelInboundHandlerAdapter{
     //处理服务端响应消息
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        logger.debug("服务端响应："+msg);
+        ProtoProtocolProto.ProtoProtocol protocol= (ProtoProtocolProto.ProtoProtocol) msg;
+        if(protocol.getType().getNumber()==2) {
+            logger.debug("服务端响应：" + protocol.getSubResp().getDesc());
+        }
     }
 
-    private SubscribeReqProto.SubscribeReq createReq(int id){
+    private ProtoProtocolProto.ProtoProtocol createReq(int id){
         SubscribeReqProto.SubscribeReq.Builder builder=SubscribeReqProto.SubscribeReq.newBuilder();
         builder.setSubReqId(id);
         builder.setUserName("netty");
@@ -42,7 +45,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter{
         address.add("Zhejiang");
         address.add("China");
         builder.addAllAddress(address);
-        return builder.build();
+        return ProtoProtocolProto.ProtoProtocol.newBuilder().setType(ProtoProtocolProto.ProtocolTag.Req).setSubReq(builder.build()).build();
     }
 
 }

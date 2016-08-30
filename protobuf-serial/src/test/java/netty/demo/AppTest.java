@@ -1,6 +1,5 @@
 package netty.demo;
 
-import com.google.protobuf.Internal;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.util.ArrayList;

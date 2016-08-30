@@ -18,6 +18,7 @@
         <module>fixedlength-decoder</module>
         <module>http-server</module>
         <module>protobuf-serial</module>
+        <module>marshalling-serial</module>
     </modules>
     <packaging>pom</packaging>
 

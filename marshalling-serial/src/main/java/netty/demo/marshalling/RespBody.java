@@ -2,6 +2,7 @@ package netty.demo.marshalling;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * functional describe:响应体
@@ -28,5 +29,14 @@ public class RespBody implements Serializable {
 
     public void setDesc(List<String> desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public String toString() {
+        final Optional<String> resut=desc.stream().reduce((x,y)-> x+y);
+        return "RespBody{" +
+                "reqId=" + reqId +
+                ", desc=" + resut.orElseGet(()->"无描述") +
+                '}';
     }
 }

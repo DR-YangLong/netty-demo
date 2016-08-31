@@ -31,13 +31,12 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.marshalling</groupId>
-            <artifactId>marshalling-api</artifactId>
-            <version>1.2.3.GA</version>
+            <artifactId>jboss-marshalling-serial</artifactId>
+            <version>2.0.0.Beta2</version>
         </dependency>
         <dependency>
-            <groupId>org.jboss.marshalling</groupId>
-            <artifactId>jboss-marshalling-serial</artifactId>
-            <version>1.4.11.Final</version>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
         </dependency>
     </dependencies>
 </project>

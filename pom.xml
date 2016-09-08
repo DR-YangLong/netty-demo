@@ -19,6 +19,7 @@
         <module>http-server</module>
         <module>protobuf-serial</module>
         <module>marshalling-serial</module>
+        <module>http-websocket</module>
     </modules>
     <packaging>pom</packaging>
 

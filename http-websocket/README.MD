@@ -1,0 +1,5 @@
+# websocket链接由http/https链接升级而来，在服务端完成
+
+HttpServerCodec整合了requestDecode和responseEncode
+
+websocket在netty的封装为WebSocketFrame，有各种子类型

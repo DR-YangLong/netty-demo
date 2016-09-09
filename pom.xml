@@ -22,6 +22,7 @@
         <module>http-websocket</module>
         <module>udp-protoc</module>
         <module>file</module>
+        <module>private-protoc</module>
     </modules>
     <packaging>pom</packaging>
 

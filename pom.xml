@@ -20,6 +20,7 @@
         <module>protobuf-serial</module>
         <module>marshalling-serial</module>
         <module>http-websocket</module>
+        <module>udp-protoc</module>
     </modules>
     <packaging>pom</packaging>
 

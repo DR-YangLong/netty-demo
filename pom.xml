@@ -21,6 +21,7 @@
         <module>marshalling-serial</module>
         <module>http-websocket</module>
         <module>udp-protoc</module>
+        <module>file</module>
     </modules>
     <packaging>pom</packaging>
 

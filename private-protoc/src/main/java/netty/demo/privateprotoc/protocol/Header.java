@@ -1,5 +1,7 @@
 package netty.demo.privateprotoc.protocol;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,5 +71,10 @@ public final class Header {
 
     public void setAttachment(Map<String, Object> attachment) {
         this.attachment = attachment;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

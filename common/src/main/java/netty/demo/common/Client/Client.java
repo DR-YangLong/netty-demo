@@ -3,6 +3,10 @@ package netty.demo.common.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -23,7 +27,7 @@ public class Client {
     private int port=8888;
     private String host="127.0.0.1";
     private ChannelInitializer<SocketChannel> initializer;
-
+    private ScheduledExecutorService executor= Executors.newScheduledThreadPool(1);
     public Client(ChannelInitializer<SocketChannel> initializer) {
         this.initializer = initializer;
     }
@@ -48,7 +52,15 @@ public class Client {
             logger.error("客户端启动错误",e);
         }
         finally {
-            group.shutdownGracefully();
+            //group.shutdownGracefully();
+            executor.execute(()->{
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                    connect();
+                } catch (Exception  e) {
+                  logger.error("重连出错！",e);
+                }
+            });
         }
     }
 }

@@ -29,10 +29,9 @@ public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
         if (message.getHeader() != null && message.getHeader().getType() == MessageType.LOGIN_RESP.getValue()) {
             logger.error("收到服务端响应！");
             logger.error("响应内容："+message.getBody());
-        }else {
-            //如果是其他业务，将消息传递到下一个handler
-            ctx.fireChannelRead(msg);
         }
+        //将消息传递到心跳处理
+        ctx.fireChannelRead(msg);
     }
 
     private NettyMessage buildLoginReq() {

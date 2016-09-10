@@ -1,6 +1,7 @@
 package netty.demo.privateprotoc.channel;
 
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.timeout.ReadTimeoutHandler;
 
 /**
  * functional describe:服务端初始化
@@ -12,6 +13,7 @@ public class ServerChannelInit extends ChannelInit{
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         super.initChannel(ch);
-        ch.pipeline().addLast(new LoginAuthRespHandler());
+        ch.pipeline().addLast(new ReadTimeoutHandler(50)).addLast(new LoginAuthRespHandler())
+        .addLast(new HeartBeatRespHandler());
     }
 }

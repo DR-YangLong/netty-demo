@@ -40,23 +40,29 @@ public class Client {
 
     public void connect(){
         EventLoopGroup group=new NioEventLoopGroup();
+        ChannelFuture future=null;
         try {
             Bootstrap bootstrap=new Bootstrap();
             bootstrap.group(group);
             bootstrap.channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY,true)
                     .handler(initializer);
-            ChannelFuture future=bootstrap.connect(host,port).sync();
+            future=bootstrap.connect(host,port).sync();
             future.channel().closeFuture().sync();
         }catch (Exception e){
             logger.error("客户端启动错误",e);
         }
         finally {
+            if(null!=future&&future.channel()!=null&&future.channel().isActive()){
+                future.channel().close();
+            }
             //group.shutdownGracefully();
             executor.execute(()->{
                 try {
                     TimeUnit.SECONDS.sleep(5);
+                    logger.error("准备重连！");
                     connect();
+                    logger.error("重连成功！");
                 } catch (Exception  e) {
                   logger.error("重连出错！",e);
                 }

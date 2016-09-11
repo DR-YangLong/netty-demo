@@ -23,6 +23,7 @@
         <module>udp-protoc</module>
         <module>file</module>
         <module>private-protoc</module>
+        <module>retry-connection</module>
     </modules>
     <packaging>pom</packaging>
 
